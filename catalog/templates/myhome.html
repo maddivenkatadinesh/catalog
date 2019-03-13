@@ -1,0 +1,60 @@
+<head>
+<title>AEROPLANE HUB</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta content="text/html; charset=iso-8859-2" http-equiv="Content-Type">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<style>
+.mySlides {display:none;}
+</style>
+</head>
+
+{% include 'nav.html' %}
+<div class="main">
+{% block content %}
+  <!-- {% for md in mds_cat %}
+    <a href="{{ url_for('showAeroplanes',mdid=md.id)}}">{{md.name}}</a><br>
+    {% endfor %} -->
+    {% with messages = get_flashed_messages() %}
+	    {% if messages %}
+	        <div class="alert alert-success alert-dismissable animated fadeIn">
+	            {% for message in messages %}
+	            <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
+	            <p class="h4"><strong>{{ message }}</strong></p>
+	            {% endfor %}
+	        </div>
+	    {% endif %}
+	{% endwith %}
+
+	<div class="w3-content w3-section" style="max-width:1000px">
+  <img class="mySlides" src="https://duibe7slt06r7.cloudfront.net/Live/Binaries/ww-WW/images/Airbus-A330-200-large_tcm87-3653.jpg" width="1000px" height="650px">
+  <img class="mySlides" src="https://www.seamantours.in/wp-content/uploads/2017/06/spice-jet-ok-to-board.jpg" width="1000px" height="650px">
+  <img class="mySlides" src="https://www.jetairways.com/Images/PhotoGallery/Thumbnail/B777-(4).jpg" width="1000px" height="650px">
+  <img class="mySlides" src="https://airbus-h.assetsadobe2.com/is/image/content/dam/products-and-solutions/commercial-aircraft/a320-family/a320neo/A320_IndiGo_inflight.jpg?wid=1920&fit=fit,1&qlt=85,0" width="1000px" height="650px">
+  <img class="mySlides" src="http://marisagarciawriter.files.wordpress.com/2014/07/a330-900neo_rr_air_asia_x_02.jpg" width="1000px" height="650px">
+  <img class="mySlides" src="https://cdn.wonderfulengineering.com/wp-content/uploads/2014/05/airplane-wallpaper-5-610x457.jpg" width="1000px" height="650px"><br><br><br>
+  <marquee direction="ltr">
+		<font size="4" color="green">&copy; 2019, All Rights Reserved
+		</font>
+  </marquee>
+	</div>
+	
+<script>
+var myIndex = 0;
+carousel();
+
+function carousel() {
+  var i;
+  var x = document.getElementsByClassName("mySlides");
+  for (i = 0; i < x.length; i++) {
+    x[i].style.display = "none";  
+  }
+  myIndex++;
+  if (myIndex > x.length) {myIndex = 1}    
+  x[myIndex-1].style.display = "block";  
+  setTimeout(carousel, 2000); // Change image every 2 seconds
+}
+</script>
+
+    
+{% endblock content %}
+</div>

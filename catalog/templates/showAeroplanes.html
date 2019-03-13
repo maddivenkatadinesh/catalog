@@ -1,0 +1,48 @@
+{% include 'nav.html' %}
+<div class="main">
+{% block content %}
+{% with messages = get_flashed_messages() %}
+	{% if messages %}
+	        <div class="alert alert-success alert-dismissable animated fadeIn">
+	            {% for message in messages %}
+	            <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
+	            <p class="h4"><strong>{{ message }}</strong></p>
+	            {% endfor %}
+	        </div>
+	{% endif %}	    
+{% endwith %}
+{% if 'username' in session %}
+<button type="button" class="btn btn-warning" style="margin: 5px 0px 5px 25px;"><a href="{{url_for('addAeroplaneDetails',mdname=mds.name)}}" style="text-decoration: none;"><strong>Add New Aeroplane Model</strong></a></button>
+
+{% endif %}
+<div class="row" style="margin: 10px;">
+{% for mde in mdes %}
+
+	<div class="col-sm-4 text-center">
+		<div class="panel panel-primary">
+			<div class="panel-heading">
+				<h4>{{ mde.name }}</h4>
+			</div>
+			<div class="panel-body text-center"style="background-color:grey">
+				<table>
+					<tr><th>Aeroplane Model Name</th><td>:</td><td><h5>{{ mde.name }}</h5></td></tr>
+					<tr><th>Capacity</th><td>:</td><td><h5>{{ mde.capacity }}</h5></td></tr>
+					<tr><th>Topspeed</th><td>:</td><td><h5>{{ mde.topspeed }}</h5></td></tr>
+					<tr><th>rating</th><td>:</td><td><h5>{{ mde.rating }}</h5></td></tr>
+					<tr><th>service</th><td>:</td><td><h5>{{ mde.service }}</h5></td></tr>
+
+				</table>
+			</div>
+			{% if 'username' in session %}
+			<div class="panel-footer"style="background-color:#3777af">
+					<button type="button" class="btn btn-info"><a href="{{ url_for('editAeroplaneModel',mdid=mds.id,mdename=mde.name) }}"style="text-decoration: none;color:white;">EDIT</a></button>
+					<button type="button" class="btn btn-danger"><a href="{{ url_for('deleteAeroplaneModel',mdid=mds.id,mdename=mde.name)}}"style="text-decoration: none;color:white;">DELETE</a></button>
+			</div>
+			{% endif %}	
+			
+		</div>
+	</div>
+{% endfor %}
+</div>
+{% endblock content %}
+</div>
